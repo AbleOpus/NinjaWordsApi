@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NinjaWordsApiDemo
+namespace NinjaWordsApi
 {
     /// <summary>
     /// Represents an entry for one word. A word may consist of
@@ -11,7 +11,7 @@ namespace NinjaWordsApiDemo
         /// <summary>
         /// Gets the category the word falls under
         /// </summary>
-        public Category Article { get; private set; }
+        public Category Category { get; private set; }
 
         /// <summary>
         /// Gets the text that defines the word
@@ -23,9 +23,9 @@ namespace NinjaWordsApiDemo
         /// </summary>
         public string Example { get; private set; }
 
-        public NinjaEntry(Category article, string definition, string example)
+        public NinjaEntry(Category category, string definition, string example)
         {
-            Article = article;
+            Category = category;
             Definition = definition;
             Example = example;
         }
@@ -34,10 +34,10 @@ namespace NinjaWordsApiDemo
         {
             // I Ex. (noun) To refer to ones self.
             //       "I often write code when no one is around"
-            string text = "(" + Article + ") " + Definition;
+            string text = " ° " + Definition;
 
             if (!String.IsNullOrEmpty(Example))
-                text += Environment.NewLine + @"""" + Example + @"""";
+                text += Environment.NewLine + @"   """ + Example + @"""";
 
             return text;
         }

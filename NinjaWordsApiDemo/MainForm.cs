@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using NinjaWordsApi;
 
 namespace NinjaWordsApiDemo
 {
@@ -17,7 +18,7 @@ namespace NinjaWordsApiDemo
             var SB = new StringBuilder();
 
             foreach (var NT in terms.Where(NT => !NT.Defined))
-                SB.AppendLine(NT.Text + " was not defined");
+                SB.AppendLine(NT.Term + " was not defined");
 
             // Put a space between undefined list and entries
             if (terms.Any(t => !t.Defined))
@@ -43,7 +44,7 @@ namespace NinjaWordsApiDemo
             btnRandom.Enabled = false;
             var term = await Ninja.GetRandomTermAsync();
             richTextBox.Text = term.ToString();
-            webBrowser.Navigate(Ninja.Host + "/" + term.Text);
+            webBrowser.Navigate(Ninja.Host + "/" + term.Term);
             btnRandom.Enabled = true;
         }
     }

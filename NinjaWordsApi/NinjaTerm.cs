@@ -1,6 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace NinjaWordsApiDemo
+namespace NinjaWordsApi
 {
     /// <summary>
     /// Represents a term that can be looked up on http://Ninjawords.com
@@ -21,7 +23,7 @@ namespace NinjaWordsApiDemo
         /// <summary>
         /// Gets the text of this term
         /// </summary>
-        public string Text { get; private set; }
+        public string Term { get; private set; }
 
         /// <summary>
         /// Gets the available synonyms for this term
@@ -41,7 +43,7 @@ namespace NinjaWordsApiDemo
         {
             Entries = entries;
             Synonyms = synonyms;
-            Text = term;
+            Term = term;
         }
 
         /// <summary>
@@ -52,25 +54,44 @@ namespace NinjaWordsApiDemo
         public override string ToString()
         {
             if (Entries == null) return string.Empty;   
+
             var SB = new StringBuilder();
-            SB.AppendLine(Text + ":");
-            SB.AppendLine();
+            SB.AppendLine(Term + ":"); // Add the term text itself
+
+            var valuesList = new List<Category>((Category[])
+                Enum.GetValues(typeof(Category)));
 
             foreach (var entry in Entries)
             {
+                if (valuesList.Contains(entry.Category))
+                {
+                    SB.AppendLine("[" + entry.Category + "]");
+                    valuesList.Remove(entry.Category);
+                }
+
                 SB.AppendLine(entry.ToString());
-                SB.AppendLine();
             }
 
-            if (Synonyms != null && Synonyms.Length > 0)
-            {
-                SB.Append("Synonyms: ");
+            return SB.ToString();
 
-                foreach (var syn in Synonyms)
-                    SB.Append(syn + ", ");
-            }
+            //SB.AppendLine(Text + ":");
+            //SB.AppendLine();
 
-            return SB.ToString().TrimEnd(' ', ',');
+            //foreach (var entry in Entries)
+            //{
+            //    SB.AppendLine(entry.ToString());
+            //    SB.AppendLine();
+            //}
+
+            //if (Synonyms != null && Synonyms.Length > 0)
+            //{
+            //    SB.Append("Synonyms: ");
+
+            //    foreach (var syn in Synonyms)
+            //        SB.Append(syn + ", ");
+            //}
+
+            //return SB.ToString().TrimEnd(' ', ',');
         }
     }
 }

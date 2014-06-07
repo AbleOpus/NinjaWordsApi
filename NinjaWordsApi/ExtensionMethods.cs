@@ -1,8 +1,7 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 
-namespace NinjaWordsApiDemo
+namespace NinjaWordsApi
 {
     static class ExtensionMethods
     {

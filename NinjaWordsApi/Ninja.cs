@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
-namespace NinjaWordsApiDemo
+namespace NinjaWordsApi
 {
     /// <summary>
     /// Specifies the category in which a ninja term falls under
@@ -25,7 +21,8 @@ namespace NinjaWordsApiDemo
         Verb,
         Pronoun,
         Abbreviation,
-        Interjection
+        Interjection,
+        Preposition
     }
 
     /// <summary>
@@ -125,7 +122,7 @@ namespace NinjaWordsApiDemo
                 // Find the appropriate blank term to overwrite
                 for (int i = 0; i < ninjaTerms.Length; i++)
                 {
-                    if (ninjaTerms[i].Text == word)
+                    if (ninjaTerms[i].Term == word)
                     {
                         ninjaTerms[i] = ExtractNinjaWord(match.Value);
                         break;
