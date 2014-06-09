@@ -23,6 +23,9 @@ namespace NinjaWordsApi
         /// </summary>
         public string Example { get; private set; }
 
+        /// <summary>
+        /// Creates an instance of <see cref="NinjaEntry"/>
+        /// </summary>
         public NinjaEntry(Category category, string definition, string example)
         {
             Category = category;
