@@ -3,7 +3,7 @@ NinjaWordsApi
 
 An API for NinjaWords.com
 
-```c#
+```C#
         /// Removes sections of a string using the ranges of matches 
         /// in a MatchCollection
         /// </summary>
