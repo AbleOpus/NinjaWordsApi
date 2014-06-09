@@ -73,25 +73,6 @@ namespace NinjaWordsApi
             }
 
             return SB.ToString();
-
-            //SB.AppendLine(Text + ":");
-            //SB.AppendLine();
-
-            //foreach (var entry in Entries)
-            //{
-            //    SB.AppendLine(entry.ToString());
-            //    SB.AppendLine();
-            //}
-
-            //if (Synonyms != null && Synonyms.Length > 0)
-            //{
-            //    SB.Append("Synonyms: ");
-
-            //    foreach (var syn in Synonyms)
-            //        SB.Append(syn + ", ");
-            //}
-
-            //return SB.ToString().TrimEnd(' ', ',');
         }
     }
 }
