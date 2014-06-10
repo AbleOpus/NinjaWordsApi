@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -77,31 +78,36 @@ namespace NinjaWordsApi
         /// </summary>
         /// <exception cref="WebException"></exception>
         /// <returns>A Task that yeilds NinjaTerms</returns>
-        public static Task<NinjaTerm[]> GetTermsAsync(string terms)
+        /// <param name="terms">An array of terms</param>v
+        /// <param name="ignoreCase">When true, yields results for both lower and upper title casing</param>
+        public static Task<NinjaTerm[]> GetTermsAsync(string terms, bool ignoreCase)
         {
             string[] input = terms.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            return GetTermsAsync(input);
-        }
-
-        /// <summary>
-        /// Downloads a NinjaWords page using UTF8 encoding.
-        /// </summary>
-        private static Task<string> DownloadNinjaPage(string address)
-        {
-            using (var client = new WebClient())
-            {
-                client.Encoding = Encoding.UTF8;
-                return client.DownloadStringTaskAsync(address);
-            }
+            return GetTermsAsync(input, ignoreCase);
         }
 
         /// <summary>
         /// Gets an array of NinjaTerms from an array of terms asyncronously
         /// </summary>
         /// <param name="terms">An array of terms</param>
+        /// <param name="ignoreCase">When true, yields results for both lower and upper title casing</param>
         /// <exception cref="WebException"></exception>
         /// <returns>A Task that yeilds NinjaTerms</returns>
-        public async static Task<NinjaTerm[]> GetTermsAsync(string[] terms)
+        public async static Task<NinjaTerm[]> GetTermsAsync(string[] terms, bool ignoreCase)
+        {
+            if (ignoreCase)
+            {
+                var terms1 = await GetTermsAsyncBase(AdjustTitleCasings(terms, true));
+                var terms2 = await GetTermsAsyncBase(AdjustTitleCasings(terms, false));
+                return terms1.Concat(terms2).Distinct().ToArray();
+            }
+            else
+            {
+                return await GetTermsAsyncBase(terms);
+            }
+        }
+
+        private static async Task<NinjaTerm[]> GetTermsAsyncBase(string[] terms)
         {
             // Process word array
             terms = terms.Distinct().ToArray();
@@ -131,6 +137,38 @@ namespace NinjaWordsApi
             }
 
             return ninjaTerms;
+        }
+
+        /// <summary>
+        /// Adjusts the capitalization of the first letter in multiple strings
+        /// </summary>
+        /// <param name="strs">The strings to change</param>
+        /// <param name="upper">WHether to be converted to upper or lower</param>
+        /// <returns>A new string array with the adjustments made</returns>
+        private static string[] AdjustTitleCasings(string[] strs, bool upper)
+        {
+            var newStrs = (string[])strs.Clone();
+
+            for (int i = 0; i < strs.Length; i++)
+            {
+                if (String.IsNullOrWhiteSpace(strs[i])) continue;
+                char firstChar = upper ? char.ToUpper(strs[i][0]) : char.ToLower(strs[i][0]);
+                newStrs[i] = firstChar + strs[i].Substring(1, strs[i].Length - 1);
+            }
+
+            return newStrs;
+        }
+
+        /// <summary>
+        /// Downloads a NinjaWords page using UTF8 encoding.
+        /// </summary>
+        private static Task<string> DownloadNinjaPage(string address)
+        {
+            using (var client = new WebClient())
+            {
+                client.Encoding = Encoding.UTF8;
+                return client.DownloadStringTaskAsync(address);
+            }
         }
 
         /// <summary>
