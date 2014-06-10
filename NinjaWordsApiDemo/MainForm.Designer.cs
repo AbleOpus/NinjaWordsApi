@@ -34,6 +34,7 @@
             this.btnRandom = new System.Windows.Forms.Button();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.chkIgnoreCase = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -47,7 +48,7 @@
             this.txtTerm.Name = "txtTerm";
             this.txtTerm.Size = new System.Drawing.Size(282, 30);
             this.txtTerm.TabIndex = 0;
-            this.txtTerm.Text = "hey";
+            this.txtTerm.Text = "english";
             // 
             // btnLookup
             // 
@@ -109,12 +110,25 @@
             this.webBrowser.Size = new System.Drawing.Size(606, 567);
             this.webBrowser.TabIndex = 0;
             // 
+            // chkIgnoreCase
+            // 
+            this.chkIgnoreCase.AutoSize = true;
+            this.chkIgnoreCase.Checked = true;
+            this.chkIgnoreCase.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkIgnoreCase.Location = new System.Drawing.Point(555, 16);
+            this.chkIgnoreCase.Name = "chkIgnoreCase";
+            this.chkIgnoreCase.Size = new System.Drawing.Size(122, 24);
+            this.chkIgnoreCase.TabIndex = 6;
+            this.chkIgnoreCase.Text = "Ignore Case";
+            this.chkIgnoreCase.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.btnLookup;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1249, 627);
+            this.Controls.Add(this.chkIgnoreCase);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.btnRandom);
             this.Controls.Add(this.btnLookup);
@@ -139,6 +153,7 @@
         private System.Windows.Forms.Button btnRandom;
         private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.WebBrowser webBrowser;
+        private System.Windows.Forms.CheckBox chkIgnoreCase;
     }
 }
 
