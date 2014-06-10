@@ -20,7 +20,6 @@ Entry<br />
 Using the lib is simple, all of the methods exposed are in the static class "Ninja". Be sure to handle the potential WebException web dependant methods.
 
 To get definitions for terms:
-
 ```C#
             var words = new[] {"I", "Write", "Code"};
             var ninjaTerms = await Ninja.GetTermsAsync(words);
@@ -30,7 +29,6 @@ To get definitions for terms:
 ```
 
 You may also specify terms comma seperated:
-
 ```C#
             var ninjaTerms = await Ninja.GetTermsAsync("I,write,code");
             var ninjaTerm = await Ninja.GetTermsAsync("foo");
@@ -39,7 +37,6 @@ You may also specify terms comma seperated:
 >You can identify words that could not be defined by checking the defined property of each NinjaTerm
 
 To get one random definition:
-
 ```C#
 var term = await Ninja.GetRandomTermAsync();
 ```
