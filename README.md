@@ -43,6 +43,4 @@ var term = await Ninja.GetRandomTermAsync();
 
 >Note the "Defined" property will always be true.
 
-NinjaWords is case sensitive (to better organize terms). For instance, the word "english" is defined differently from "English". As well "Hello World" is defined whereas "hello world" is not. 
-
->Character capitalization after the first letter for each word seems to be insignificant.
+NinjaWords is case sensitive (to better organize terms). For instance, the word "english" is defined differently from "English". As well "Hello World" is defined whereas "hello world" is not. Character capitalization after the first letter for each word seems to be insignificant. To ignore casing, specify true for the "ignoreCase" parameters. This will yield all results for the given words. However, using this option will result in twice as many requests. 
