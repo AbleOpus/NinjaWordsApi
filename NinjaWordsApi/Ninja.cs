@@ -82,7 +82,7 @@ namespace NinjaWordsApi
         /// <param name="ignoreCase">When true, yields results for both lower and upper title casing</param>
         public static Task<NinjaTerm[]> GetTermsAsync(string terms, bool ignoreCase)
         {
-            string[] input = terms.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] input = terms.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             return GetTermsAsync(input, ignoreCase);
         }
 
