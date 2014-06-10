@@ -1,4 +1,4 @@
-#Basics
+##Basics
 
 There is no web API for ninjawords.com but certain requests can yield barebones HTML. Making it easy to parse into workable data. This API uses regex patterns to get information from downloaded webpages. The pages download extremely fast (around 150ms). Ninjawords can display multiple term results on one page. Meaning the API can yeild results for multiple terms with one request. The API also respects the case sensitive nature of NinjaWords.com. For instance, "english" yields significantly different results from "English".
 
@@ -16,7 +16,7 @@ Entry<br />
 -Category<br />
 >Note Entries are listed under a single category on the site, but for the sake of usability I have specified the category for each entry.
   
-#Usage
+##Usage
 Using the lib is simple, all of the methods exposed are in the static class "Ninja". Be sure to handle the potential WebException web dependant methods.
 
 To get definitions for terms:
