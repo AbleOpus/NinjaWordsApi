@@ -4,21 +4,20 @@ There is no web API for ninjawords.com but certain requests can yield barebones 
 
 The data break down is simple and resembles how data is displayed on the site:
 
--Term
-  -Text
-  -Entries
-  -Synonyms
-  -Defined
-
--Entry
-  -Definition
-  -Example
-  -Category
+Term<br/>
+-Text<br />
+-Entries<br />
+-Synonyms<br />
+-Defined
   
-  #Note Entries are listed under a single category on the site, but for the sake of usability I have specified the category for each entry.
+Entry<br />
+-Definition<br />
+-Example<br />
+-Category<br />
+>Note Entries are listed under a single category on the site, but for the sake of usability I have specified the category for each entry.
   
 #Usage
-Using the lib is simple, all of the methods exposed are in the "Ninja" class and are static. Be sure to handle the potential WebException web dependant methods.
+Using the lib is simple, all of the methods exposed are in the static class "Ninja". Be sure to handle the potential WebException web dependant methods.
 
 To get definitions for terms:
 
@@ -37,7 +36,7 @@ You may also specify terms comma seperated:
             var ninjaTerm = await Ninja.GetTermsAsync("foo");
 ```
 
-#You can identify words that could not be defined by checking the defined property of each NinjaTerm
+>You can identify words that could not be defined by checking the defined property of each NinjaTerm
 
 To get one random definition:
 
@@ -45,4 +44,4 @@ To get one random definition:
 var term = await Ninja.GetRandomTermAsync();
 ```
 
-#Note the "Defined" property will always be true.
+>Note the "Defined" property will always be true.
