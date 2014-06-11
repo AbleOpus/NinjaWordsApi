@@ -22,16 +22,16 @@ Using the lib is simple, all of the methods exposed are in the static class "Nin
 To get definitions for terms:
 ```C#
             var words = new[] {"I", "Write", "Code"};
-            var ninjaTerms = await Ninja.GetTermsAsync(words, false);
-
+            var ninjaTerms = await Ninja.GetTermsAsync(words);
+            
             foreach (var term in ninjaTerms)
                 Debug.WriteLine(term);
 ```
 
 You may also specify terms comma separated:
 ```C#
-            var ninjaTerms = await Ninja.GetTermsAsync("I,write,code", false);
-            var ninjaTerm = await Ninja.GetTermsAsync("foo", false);
+            var ninjaTerms = await Ninja.GetTermsAsync("I,write,code");
+            var ninjaTerm = await Ninja.GetTermsAsync("foo");
 ```
 
 >You can identify words that could not be defined by checking the defined property of each NinjaTerm
@@ -43,4 +43,4 @@ var term = await Ninja.GetRandomTermAsync();
 
 >Note the "Defined" property will always be true.
 
-NinjaWords is case sensitive (to better organize terms). For instance, the word "english" is defined differently from "English". As well "Hello World" is defined whereas "hello world" is not. Character capitalization after the first letter for each word seems to be insignificant. To ignore casing, specify true for the "ignoreCase" parameters. This will yield all results for the given words. However, using this option will result in twice as many requests. 
+NinjaWords is case sensitive (to better organize terms). For instance, the word "english" is defined differently from "English". As well "Hello World" is defined whereas "hello world" is not. Character capitalization after the first letter for each word seems to be insignificant. 
