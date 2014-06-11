@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using NinjaWordsApi;
 
 namespace NinjaWordsApiDemo
@@ -35,7 +33,7 @@ namespace NinjaWordsApiDemo
         private async void btnLookup_Click(object sender, EventArgs e)
         {
             btnLookup.Enabled = false;
-            var ninjaTerms = await Ninja.GetTermsAsync(txtTerm.Text, chkIgnoreCase.Checked);
+            var ninjaTerms = await Ninja.GetTermsAsync(txtTerm.Text);
             richTextBox.Text = GetStringFromTerms(ninjaTerms);
             webBrowser.Navigate(Ninja.Host + "/" + txtTerm.Text);
             btnLookup.Enabled = true;
