@@ -25,6 +25,7 @@
 *.opensdf
 *.unsuccessfulbuild
 ipch/
+Packages/
 obj/
 [Bb]in
 [Dd]ebug*/
