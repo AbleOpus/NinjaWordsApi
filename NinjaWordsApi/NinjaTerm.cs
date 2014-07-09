@@ -9,11 +9,6 @@ namespace NinjaWordsApi
     /// </summary>
     public class NinjaTerm
     {
-        /// <summary>
-        /// An empty/undefined NinjaTerm
-        /// </summary>
-        public readonly static NinjaTerm Empty = new NinjaTerm(string.Empty, null, null);
-
         #region Properties
         /// <summary>
         /// Gets the definition entries for this term
