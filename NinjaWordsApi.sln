@@ -10,6 +10,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjaWordsApiDemo", "NinjaW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjaWordsApi", "NinjaWordsApi\NinjaWordsApi.csproj", "{FF3D02E4-888A-4A82-BC3F-ECF79204C796}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestRandom", "UnitTestRandom\UnitTestRandom.csproj", "{F71AA138-08C5-4D77-86B2-D792E708F977}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FF3D02E4-888A-4A82-BC3F-ECF79204C796} = {FF3D02E4-888A-4A82-BC3F-ECF79204C796}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +29,10 @@ Global
 		{FF3D02E4-888A-4A82-BC3F-ECF79204C796}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF3D02E4-888A-4A82-BC3F-ECF79204C796}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF3D02E4-888A-4A82-BC3F-ECF79204C796}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F71AA138-08C5-4D77-86B2-D792E708F977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F71AA138-08C5-4D77-86B2-D792E708F977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F71AA138-08C5-4D77-86B2-D792E708F977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F71AA138-08C5-4D77-86B2-D792E708F977}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

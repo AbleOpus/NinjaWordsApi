@@ -83,8 +83,8 @@ namespace NinjaWordsApi
         private static async Task<NinjaTerm[]> GetTermsAsyncBase(string[] terms)
         {
             // Process word array
-            terms = terms.Distinct().ToArray();
-            terms.TrimAll();
+            terms = terms.Distinct().ToArray(); // Remove redundant terms
+            terms = terms.Select(s => s.Trim()).ToArray(); // Trim whitespace on all elements
             var URL = CreateLookupLink(terms, true);
             string content = await DownloadNinjaPage(URL);
             content = RemoveUnwantedData(content);
@@ -179,8 +179,7 @@ namespace NinjaWordsApi
             string catStr = closest.Groups["Category"].Value;
             LexicalCategory category;
             bool success = Enum.TryParse(catStr, true, out category);
-            if (!success)
-                throw new CategoryNotEnumeratedException(catStr);
+            if (!success) throw new CategoryNotEnumeratedException(catStr);
             return category;
         }
 
