@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Ninja.cs" />
     <Compile Include="NinjaEntry.cs" />

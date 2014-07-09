@@ -13,17 +13,14 @@ namespace NinjaWordsApi
     /// </summary>
     public enum Category
     {
-        /// <summary>
-        /// An unidentified catergory was encountered
-        /// </summary>
-        Unknown,
         Noun,
         Adjective,
         Verb,
         Pronoun,
         Abbreviation,
         Interjection,
-        Preposition
+        Preposition,
+        Conjunction
     }
 
     /// <summary>
@@ -76,9 +73,10 @@ namespace NinjaWordsApi
         /// Gets an array of NinjaTerms from comma seperated terms asyncronously
         /// <example>Example: This,is,code</example>
         /// </summary>
-        /// <exception cref="WebException"></exception>
         /// <returns>A Task that yeilds NinjaTerms</returns>
-        /// <param name="terms">An array of terms</param>v
+        /// <param name="terms">An array of terms</param>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="CategoryNotEnumeratedException"></exception>
         public static Task<NinjaTerm[]> GetTermsAsync(string terms)
         {
             string[] input = terms.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -89,8 +87,9 @@ namespace NinjaWordsApi
         /// Gets an array of NinjaTerms from an array of terms asyncronously
         /// </summary>
         /// <param name="terms">An array of terms</param>
-        /// <exception cref="WebException"></exception>
         /// <returns>A Task that yeilds NinjaTerms</returns>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="CategoryNotEnumeratedException"></exception>
         public async static Task<NinjaTerm[]> GetTermsAsync(string[] terms)
         {
             return await GetTermsAsyncBase(terms);
@@ -178,6 +177,7 @@ namespace NinjaWordsApi
         /// </summary>
         /// <param name="element">An element containing both the entry and category</param>
         /// <param name="index">The index to look above</param>
+        /// <exception cref="CategoryNotEnumeratedException"></exception>
         private static Category GetAboveCategory(string element, int index)
         {
             const string ART_PATTERN = @"<dd\s+class=""article"">(?<Category>[^<]+)";
@@ -188,13 +188,14 @@ namespace NinjaWordsApi
             {
                 // If match above and current category is closer than closest
                 if (match.Index < index && (index - closest.Index > index - match.Index))
-                {
                     closest = match;
-                }
             }
 
+            string catStr = closest.Groups["Category"].Value;
             Category category;
-            Enum.TryParse(closest.Groups["Category"].Value, true, out category);
+            bool success = Enum.TryParse(catStr, true, out category);
+            if (!success)
+                throw new CategoryNotEnumeratedException(catStr);
             return category;
         }
 
