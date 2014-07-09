@@ -9,21 +9,6 @@ using System.Threading.Tasks;
 namespace NinjaWordsApi
 {
     /// <summary>
-    /// Specifies the category in which a ninja term falls under
-    /// </summary>
-    public enum Category
-    {
-        Noun,
-        Adjective,
-        Verb,
-        Pronoun,
-        Abbreviation,
-        Interjection,
-        Preposition,
-        Conjunction
-    }
-
-    /// <summary>
     /// Provides ninja like term lookups
     /// </summary>
     public static class Ninja
@@ -178,7 +163,7 @@ namespace NinjaWordsApi
         /// <param name="element">An element containing both the entry and category</param>
         /// <param name="index">The index to look above</param>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
-        private static Category GetAboveCategory(string element, int index)
+        private static LexicalCategory GetAboveCategory(string element, int index)
         {
             const string ART_PATTERN = @"<dd\s+class=""article"">(?<Category>[^<]+)";
             var MC = Regex.Matches(element, ART_PATTERN, RegexOptions.Singleline);
@@ -192,7 +177,7 @@ namespace NinjaWordsApi
             }
 
             string catStr = closest.Groups["Category"].Value;
-            Category category;
+            LexicalCategory category;
             bool success = Enum.TryParse(catStr, true, out category);
             if (!success)
                 throw new CategoryNotEnumeratedException(catStr);

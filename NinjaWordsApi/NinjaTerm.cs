@@ -53,8 +53,8 @@ namespace NinjaWordsApi
             var SB = new StringBuilder();
             SB.AppendLine(Term + ":"); // Add the term text itself
 
-            var valuesList = new List<Category>((Category[])
-                Enum.GetValues(typeof(Category)));
+            var valuesList = new List<LexicalCategory>((LexicalCategory[])
+                Enum.GetValues(typeof(LexicalCategory)));
 
             foreach (var entry in Entries)
             {

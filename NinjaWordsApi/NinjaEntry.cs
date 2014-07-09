@@ -11,7 +11,7 @@ namespace NinjaWordsApi
         /// <summary>
         /// Gets the category the word falls under
         /// </summary>
-        public Category Category { get; private set; }
+        public LexicalCategory Category { get; private set; }
 
         /// <summary>
         /// Gets the text that defines the word
@@ -26,7 +26,7 @@ namespace NinjaWordsApi
         /// <summary>
         /// Creates an instance of <see cref="NinjaEntry"/>
         /// </summary>
-        public NinjaEntry(Category category, string definition, string example)
+        public NinjaEntry(LexicalCategory category, string definition, string example)
         {
             Category = category;
             Definition = definition;
