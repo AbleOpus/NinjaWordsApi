@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -21,9 +22,9 @@ namespace NinjaWordsApi
         /// <summary>
         /// Gets a link to a random definition on a minimal webpage
         /// </summary>
-        public static string GetRandomLink()
+        private static string RandomLink
         {
-            return Host + "/definitions/random";
+            get { return Host + "/definitions/random"; }
         }
 
         /// <summary>
@@ -31,7 +32,7 @@ namespace NinjaWordsApi
         /// </summary>
         /// <param name="words">The words to appenbd to the link</param>
         /// <param name="minimal">Whether to return minimal HTML content</param>
-        public static string CreateLookupLink(string[] words, bool minimal)
+        private static string CreateLookupLink(IEnumerable<string> words, bool minimal)
         {
             var SB = new StringBuilder();
             SB.Append(Host + "/");
@@ -45,48 +46,39 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets a random term from http://Ninjawords.com asyncronously
+        /// Gets a random term from http://Ninjawords.com
         /// </summary>
         /// <exception cref="WebException"></exception>
-        public async static Task<NinjaTerm> GetRandomTermAsync()
+        public static NinjaTerm GetRandomTerm()
         {
-            string content = await DownloadNinjaPage(GetRandomLink());
+            string content = DownloadNinjaPage(RandomLink);
             return ExtractNinjaWord(RemoveUnwantedData(content));
         }
 
         /// <summary>
-        /// Gets an array of NinjaTerms from comma seperated terms asyncronously
+        /// Gets a random term from http://Ninjawords.com asyncronously
+        /// </summary>
+        /// <exception cref="WebException"></exception>
+        public static Task<NinjaTerm> GetRandomTermAsync()
+        {
+            return Task.Run(() => GetRandomTerm());
+        }
+
+        /// <summary>
+        /// Gets an array of NinjaTerms from comma seperated terms
         /// <example>Example: This,is,code</example>
         /// </summary>
         /// <returns>A Task that yeilds NinjaTerms</returns>
         /// <param name="terms">An array of terms</param>
         /// <exception cref="WebException"></exception>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
-        public static Task<NinjaTerm[]> GetTermsAsync(string terms)
-        {
-            string[] input = terms.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            return GetTermsAsync(input);
-        }
-
-        /// <summary>
-        /// Gets an array of NinjaTerms from an array of terms asyncronously
-        /// </summary>
-        /// <param name="terms">An array of terms</param>
-        /// <returns>A Task that yeilds NinjaTerms</returns>
-        /// <exception cref="WebException"></exception>
-        /// <exception cref="CategoryNotEnumeratedException"></exception>
-        public async static Task<NinjaTerm[]> GetTermsAsync(string[] terms)
-        {
-            return await GetTermsAsyncBase(terms);
-        }
-
-        private static async Task<NinjaTerm[]> GetTermsAsyncBase(string[] terms)
+        public static NinjaTerm[] GetTerms(string[] terms)
         {
             // Process word array
             terms = terms.Distinct().ToArray(); // Remove redundant terms
             terms = terms.Select(s => s.Trim()).ToArray(); // Trim whitespace on all elements
             var URL = CreateLookupLink(terms, true);
-            string content = await DownloadNinjaPage(URL);
+            string content = DownloadNinjaPage(URL);
             content = RemoveUnwantedData(content);
             const string PATTERN = @"<dl id=""word-(?<Word>[^""]+)"">.+?</dl>";
             var MC = Regex.Matches(content, PATTERN, RegexOptions.Singleline);
@@ -113,14 +105,53 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Downloads a NinjaWords page using UTF8 encoding.
+        /// Gets an array of NinjaTerms from comma seperated terms
+        /// <example>Example: This,is,code</example>
         /// </summary>
-        private static Task<string> DownloadNinjaPage(string address)
+        /// <returns>A Task that yeilds NinjaTerms</returns>
+        /// <param name="terms">An array of terms</param>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="CategoryNotEnumeratedException"></exception>
+        public static NinjaTerm[] GetTerms(string terms)
+        {
+            string[] input = terms.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            return GetTerms(input);
+        }
+
+        /// <summary>
+        /// Gets an array of NinjaTerms from an array of terms asyncronously
+        /// </summary>
+        /// <param name="terms">An array of terms</param>
+        /// <returns>A Task that yeilds NinjaTerms</returns>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="CategoryNotEnumeratedException"></exception>
+        public static Task<NinjaTerm[]> GetTermsAsync(string[] terms)
+        {
+            return Task.Run(() => GetTerms(terms));
+        }
+
+        /// <summary>
+        /// Gets an array of NinjaTerms from comma seperated terms asyncronously
+        /// <example>Example: This,is,code</example>
+        /// </summary>
+        /// <returns>A Task that yeilds NinjaTerms</returns>
+        /// <param name="terms">An array of terms</param>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="CategoryNotEnumeratedException"></exception>
+        public static Task<NinjaTerm[]> GetTermsAsync(string terms)
+        {
+            return Task.Run(() => GetTerms(terms));
+        }
+
+        /// <summary>
+        /// Downloads a NinjaWords page using UTF8 encoding
+        /// </summary>
+        private static string DownloadNinjaPage(string address)
         {
             using (var client = new WebClient())
             {
                 client.Encoding = Encoding.UTF8;
-                return client.DownloadStringTaskAsync(address);
+                return client.DownloadString(address);
             }
         }
 
@@ -147,9 +178,9 @@ namespace NinjaWordsApi
         /// <summary>
         /// Creates an array of undefined NinjaTerms from the specified word list
         /// </summary>
-        private static NinjaTerm[] GetUndefinedTerms(string[] terms)
+        private static NinjaTerm[] GetUndefinedTerms(IList<string> terms)
         {
-            var ninjaTerms = new NinjaTerm[terms.Length];
+            var ninjaTerms = new NinjaTerm[terms.Count];
 
             for (int i = 0; i < ninjaTerms.Length; i++)
                 ninjaTerms[i] = new NinjaTerm(terms[i]);

@@ -9,21 +9,26 @@ namespace UnitTestRandom
     /// Throttles the service with random requests 
     /// </summary>
     class Program
-    {
+    {            
+        // Increase throttle interval for long tests as to not
+        // get your IP blocked and to be considerate
+        const int INTERVAL = 0;
+        const int LOOKUPS = 500;
+
         static void Main(string[] args)
         {
-            // Increase throttle interval for long tests as to not
-            // get your IP blocked and to be considerate
-            const int INTERVAL = 0;
-            const int LOOKUPS = 500;
+            Begin();
+        }
 
+        private static void Begin()
+        {
             for (int i = 0; i < LOOKUPS; i++)
             {
                 Thread.Sleep(INTERVAL);
 
                 try
                 {
-                    NinjaTerm term = Ninja.GetRandomTermAsync().Result;
+                    NinjaTerm term = Ninja.GetRandomTerm();
                     Console.WriteLine((i + 1) + ": " + term.Term);
                 }
                 catch (WebException)
