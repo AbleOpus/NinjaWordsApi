@@ -68,12 +68,25 @@ namespace NinjaWordsApi
         /// Gets an array of NinjaTerms from comma seperated terms
         /// <example>Example: This,is,code</example>
         /// </summary>
-        /// <returns>A Task that yeilds NinjaTerms</returns>
+        /// <returns>An empty array if nothing found</returns>
         /// <param name="terms">An array of terms</param>
         /// <exception cref="WebException"></exception>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public static NinjaTerm[] GetTerms(string[] terms)
         {
+            // Validate 
+            if (terms.Length == 0)
+            {
+                throw new ArgumentException("Value must have at least 1 element", "terms");
+            }
+
+            if (terms.Any(String.IsNullOrWhiteSpace))
+            {
+                throw new ArgumentException
+                    ("Value cannot cannot contain strings that are null, empty or consisting of only whitespace", "terms");
+            }
+
             // Process word array
             terms = terms.Distinct().ToArray(); // Remove redundant terms
             terms = terms.Select(s => s.Trim()).ToArray(); // Trim whitespace on all elements
@@ -108,10 +121,11 @@ namespace NinjaWordsApi
         /// Gets an array of NinjaTerms from comma seperated terms
         /// <example>Example: This,is,code</example>
         /// </summary>
-        /// <returns>A Task that yeilds NinjaTerms</returns>
+        /// <returns>An empty array if nothing found</returns>
         /// <param name="terms">An array of terms</param>
         /// <exception cref="WebException"></exception>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public static NinjaTerm[] GetTerms(string terms)
         {
             string[] input = terms.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -125,6 +139,7 @@ namespace NinjaWordsApi
         /// <returns>A Task that yeilds NinjaTerms</returns>
         /// <exception cref="WebException"></exception>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public static Task<NinjaTerm[]> GetTermsAsync(string[] terms)
         {
             return Task.Run(() => GetTerms(terms));
@@ -138,6 +153,7 @@ namespace NinjaWordsApi
         /// <param name="terms">An array of terms</param>
         /// <exception cref="WebException"></exception>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public static Task<NinjaTerm[]> GetTermsAsync(string terms)
         {
             return Task.Run(() => GetTerms(terms));
