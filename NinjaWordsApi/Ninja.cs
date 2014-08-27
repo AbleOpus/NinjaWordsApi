@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace NinjaWordsApi
 {
     /// <summary>
-    /// Provides ninja like term lookups
+    /// Provides ninja like term lookups   
     /// </summary>
     public static class Ninja
     {
