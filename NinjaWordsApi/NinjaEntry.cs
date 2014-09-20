@@ -24,8 +24,11 @@ namespace NinjaWordsApi
         public string Example { get; private set; }
 
         /// <summary>
-        /// Creates an instance of <see cref="NinjaEntry"/>.
+        /// Creates a new instance of <see cref="NinjaEntry"/>.
         /// </summary>
+        /// <param name="category">The category the term falls under.</param>
+        /// <param name="definition">The text that defines the word.</param>
+        /// <param name="example">An example for the word.</param>
         public NinjaEntry(LexicalCategory category, string definition, string example)
         {
             Category = category;
