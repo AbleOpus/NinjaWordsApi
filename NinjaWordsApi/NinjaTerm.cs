@@ -34,6 +34,12 @@ namespace NinjaWordsApi
         }
         #endregion
 
+        /// <summary>
+        /// Creates a new defined instance of NinjaTerm.
+        /// </summary>
+        /// <param name="term">The text of this term.</param>
+        /// <param name="synonyms">The available synonyms for this term.</param>
+        /// <param name="entries">The definition entries for this term.</param>
         public NinjaTerm(string term, string[] synonyms, params NinjaEntry[] entries)
         {
             Entries = entries;
@@ -42,8 +48,9 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Creates an instance of NinjaTerm. This term will be undefined.
+        /// Creates a new instance of NinjaTerm, without providing a definition.
         /// </summary>
+        /// <remarks>Defined will be false by default.</remarks>
         public NinjaTerm(string term) : this(term, null, null) { }
 
         public override string ToString()
