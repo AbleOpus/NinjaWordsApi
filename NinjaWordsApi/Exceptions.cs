@@ -14,6 +14,11 @@ namespace NinjaWordsApi
         /// </summary>
         public string CategoryString { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the 
+        /// <see cref="CategoryNotEnumeratedException"/> class.
+        /// </summary>
+        /// <param name="category">The string that could not be parsed.</param>
         public CategoryNotEnumeratedException(string category)
         {
             CategoryString = category;
