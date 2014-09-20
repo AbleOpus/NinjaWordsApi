@@ -17,10 +17,13 @@ namespace UnitTestRandom
 
         static void Main(string[] args)
         {
-            Begin();
+            BeginRandomLookups();
         }
 
-        private static void Begin()
+        /// <summary>
+        /// Begin interating random words to test robustness of API.
+        /// </summary>
+        private static void BeginRandomLookups()
         {
             for (int i = 0; i < LOOKUPS; i++)
             {
