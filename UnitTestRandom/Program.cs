@@ -6,7 +6,7 @@ using NinjaWordsApi;
 namespace UnitTestRandom
 {
     /// <summary>
-    /// Throttles the service with random requests 
+    /// Throttles the service with random requests.
     /// </summary>
     class Program
     {            
