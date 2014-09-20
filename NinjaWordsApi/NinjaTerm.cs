@@ -5,28 +5,28 @@ using System.Text;
 namespace NinjaWordsApi
 {
     /// <summary>
-    /// Represents a term that can be looked up on http://Ninjawords.com
+    /// Represents a term that can be looked up on http://Ninjawords.com.
     /// </summary>
     public class NinjaTerm
     {
         #region Properties
         /// <summary>
-        /// Gets the definition entries for this term
+        /// Gets the definition entries for this term.
         /// </summary>
         public NinjaEntry[] Entries { get; private set; }
 
         /// <summary>
-        /// Gets the text of this term
+        /// Gets the text of this term.
         /// </summary>
         public string Term { get; private set; }
 
         /// <summary>
-        /// Gets the available synonyms for this term
+        /// Gets the available synonyms for this term.
         /// </summary>
         public string[] Synonyms { get; private set; }
 
         /// <summary>
-        /// Gets whether this term has any entries
+        /// Gets whether this term has any entries.
         /// </summary>
         public bool Defined
         {
@@ -42,7 +42,7 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Creates an instance of NinjaTerm. This term will be undefined 
+        /// Creates an instance of NinjaTerm. This term will be undefined.
         /// </summary>
         public NinjaTerm(string term) : this(term, null, null) { }
 

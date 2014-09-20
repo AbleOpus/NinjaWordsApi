@@ -6,8 +6,7 @@ namespace NinjaWordsApi
     static class ExtensionMethods
     {
         /// <summary>
-        /// Removes sections of a string using the ranges of matches 
-        /// in a MatchCollection
+        /// Removes sections of a string using the ranges of matches in a MatchCollection.
         /// </summary>
         public static void Remove(this StringBuilder SB, MatchCollection MC)
         {
@@ -16,7 +15,7 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Trims the specified characters from the end of the StringBuilder
+        /// Trims the specified characters from the end of the StringBuilder.
         /// </summary>
         public static void TrimEnd(this StringBuilder SB, char c)
         {

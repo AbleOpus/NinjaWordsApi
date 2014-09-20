@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 namespace NinjaWordsApi
 {
     /// <summary>
-    /// Provides ninja like term lookups   
+    /// Provides ninja like term lookups.
     /// </summary>
     public static class Ninja
     {
         /// <summary>
-        /// The host name for the website
+        /// The host name for the website.
         /// </summary>
         public const string Host = "http://ninjawords.com";
 
         /// <summary>
-        /// Gets a link to a random definition on a minimal webpage
+        /// Gets a link to a random definition on a minimal webpage.
         /// </summary>
         private static string RandomLink
         {
@@ -28,10 +28,10 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Creates a NinjaWords lookup link from the specified words
+        /// Creates a NinjaWords lookup link from the specified words.
         /// </summary>
-        /// <param name="words">The words to appenbd to the link</param>
-        /// <param name="minimal">Whether to return minimal HTML content</param>
+        /// <param name="words">The words to appenbd to the link.</param>
+        /// <param name="minimal">Whether to return minimal HTML content.</param>
         private static string CreateLookupLink(IEnumerable<string> words, bool minimal)
         {
             var SB = new StringBuilder();
@@ -46,7 +46,7 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets a random term from http://Ninjawords.com
+        /// Gets a random term from http://Ninjawords.com.
         /// </summary>
         /// <exception cref="WebException"></exception>
         public static NinjaTerm GetRandomTerm()
@@ -56,7 +56,7 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets a random term from http://Ninjawords.com asyncronously
+        /// Gets a random term from http://Ninjawords.com asyncronously.
         /// </summary>
         /// <exception cref="WebException"></exception>
         public static Task<NinjaTerm> GetRandomTermAsync()
@@ -65,11 +65,10 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets an array of NinjaTerms from comma seperated terms
-        /// <example>Example: This,is,code</example>
+        /// Gets an array of NinjaTerms from comma seperated terms.
         /// </summary>
-        /// <returns>An empty array if nothing found</returns>
-        /// <param name="terms">An array of terms</param>
+        /// <returns>An empty array if nothing found.</returns>
+        /// <param name="terms">An array of terms.</param>
         /// <exception cref="WebException"></exception>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
         /// <exception cref="ArgumentException"></exception>
@@ -118,11 +117,11 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets an array of NinjaTerms from comma seperated terms
+        /// Gets an array of NinjaTerms from comma seperated terms.
         /// <example>Example: This,is,code</example>
         /// </summary>
-        /// <returns>An empty array if nothing found</returns>
-        /// <param name="terms">An array of terms</param>
+        /// <returns>An empty array if nothing found.</returns>
+        /// <param name="terms">An array of terms.</param>
         /// <exception cref="WebException"></exception>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
         /// <exception cref="ArgumentException"></exception>
@@ -133,10 +132,10 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets an array of NinjaTerms from an array of terms asyncronously
+        /// Gets an array of NinjaTerms from an array of terms asyncronously.
         /// </summary>
-        /// <param name="terms">An array of terms</param>
-        /// <returns>A Task that yeilds NinjaTerms</returns>
+        /// <param name="terms">An array of terms.</param>
+        /// <returns>A Task that yeilds NinjaTerms.</returns>
         /// <exception cref="WebException"></exception>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
         /// <exception cref="ArgumentException"></exception>
@@ -146,11 +145,11 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets an array of NinjaTerms from comma seperated terms asyncronously
+        /// Gets an array of NinjaTerms from comma seperated terms asyncronously.
         /// <example>Example: This,is,code</example>
         /// </summary>
-        /// <returns>A Task that yeilds NinjaTerms</returns>
-        /// <param name="terms">An array of terms</param>
+        /// <returns>A Task that yeilds NinjaTerms.</returns>
+        /// <param name="terms">An array of terms.</param>
         /// <exception cref="WebException"></exception>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
         /// <exception cref="ArgumentException"></exception>
@@ -160,7 +159,7 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Downloads a NinjaWords page using UTF8 encoding
+        /// Downloads a NinjaWords page using UTF8 encoding.
         /// </summary>
         private static string DownloadNinjaPage(string address)
         {
@@ -173,7 +172,7 @@ namespace NinjaWordsApi
 
         /// <summary>
         /// Remove spans and links to avoid unnessearily complex regex patterns.
-        /// Also completely remove the spans that define the definition marker
+        /// Also completely remove the spans that define the definition marker.
         /// </summary>
         private static string RemoveUnwantedData(string element)
         {
@@ -192,7 +191,7 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Creates an array of undefined NinjaTerms from the specified word list
+        /// Creates an array of undefined NinjaTerms from the specified word list.
         /// </summary>
         private static NinjaTerm[] GetUndefinedTerms(IList<string> terms)
         {
@@ -205,10 +204,10 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets the category closest and above the specified position
+        /// Gets the category closest and above the specified position.
         /// </summary>
-        /// <param name="element">An element containing both the entry and category</param>
-        /// <param name="index">The index to look above</param>
+        /// <param name="element">An element containing both the entry and category.</param>
+        /// <param name="index">The index to look above.</param>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
         private static LexicalCategory GetAboveCategory(string element, int index)
         {
@@ -231,7 +230,7 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Parses an element to a NinjaTerm
+        /// Parses an element to a NinjaTerm.
         /// </summary>
         /// <param name="element">The element that contains one term</param>
         /// <returns>An undefined term if nothing found</returns>

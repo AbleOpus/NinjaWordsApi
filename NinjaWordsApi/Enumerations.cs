@@ -1,7 +1,7 @@
 ﻿namespace NinjaWordsApi
 {
     /// <summary>
-    /// Specifies the lexical category in which a word falls under
+    /// Specifies the lexical category in which a word falls under.
     /// </summary>
     public enum LexicalCategory
     {
@@ -36,7 +36,7 @@
         Interjection,
         /// <summary>
         /// A closed class of non-inflecting words typically employed to connect 
-        /// a noun or a pronoun, in an adjectival or adverbial sense, with some other word
+        /// a noun or a pronoun, in an adjectival or adverbial sense, with some other word.
         /// </summary>
         Preposition,
         /// <summary>
