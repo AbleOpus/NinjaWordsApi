@@ -13,6 +13,9 @@ namespace NinjaWordsApiDemo
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Generates a string from an array of <see cref="NinjaTerm"/>s.
+        /// </summary>
         private static string GetStringFromTerms(NinjaTerm[] terms)
         {
             var SB = new StringBuilder();
