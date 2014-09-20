@@ -82,8 +82,8 @@ namespace NinjaWordsApi
 
             if (terms.Any(String.IsNullOrWhiteSpace))
             {
-                throw new ArgumentException
-                    ("Value cannot cannot contain strings that are null, empty or consisting of only whitespace", "terms");
+                const string MSG = "Value cannot cannot contain strings that are null, empty or consisting of only whitespace";
+                throw new ArgumentException(MSG, "terms");
             }
 
             // Process word array
