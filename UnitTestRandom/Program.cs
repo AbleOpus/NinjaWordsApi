@@ -21,7 +21,7 @@ namespace UnitTestRandom
         }
 
         /// <summary>
-        /// Begin interating random words to test robustness of API.
+        /// Begin iterating random words to test robustness of API.
         /// </summary>
         private static void BeginRandomLookups()
         {

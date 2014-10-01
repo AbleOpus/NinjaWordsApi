@@ -30,7 +30,7 @@ namespace NinjaWordsApi
         /// <summary>
         /// Creates a NinjaWords lookup link from the specified words.
         /// </summary>
-        /// <param name="words">The words to appenbd to the link.</param>
+        /// <param name="words">The words to append to the link.</param>
         /// <param name="minimal">Whether to return minimal HTML content.</param>
         private static string CreateLookupLink(IEnumerable<string> words, bool minimal)
         {
@@ -56,7 +56,7 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets a random term from http://Ninjawords.com asyncronously.
+        /// Gets a random term from http://Ninjawords.com asynchronously.
         /// </summary>
         /// <exception cref="WebException"></exception>
         public static Task<NinjaTerm> GetRandomTermAsync()
@@ -65,7 +65,7 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets an array of NinjaTerms from comma seperated terms.
+        /// Gets an array of NinjaTerms from comma separated terms.
         /// </summary>
         /// <returns>An empty array if nothing found.</returns>
         /// <param name="terms">An array of terms.</param>
@@ -117,7 +117,7 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets an array of NinjaTerms from comma seperated terms.
+        /// Gets an array of NinjaTerms from comma separated terms.
         /// <example>Example: This,is,code</example>
         /// </summary>
         /// <returns>An empty array if nothing found.</returns>
@@ -132,10 +132,10 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets an array of NinjaTerms from an array of terms asyncronously.
+        /// Gets an array of NinjaTerms from an array of terms asynchronously.
         /// </summary>
         /// <param name="terms">An array of terms.</param>
-        /// <returns>A Task that yeilds NinjaTerms.</returns>
+        /// <returns>A Task that yields NinjaTerms.</returns>
         /// <exception cref="WebException"></exception>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
         /// <exception cref="ArgumentException"></exception>
@@ -145,10 +145,10 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Gets an array of NinjaTerms from comma seperated terms asyncronously.
+        /// Gets an array of NinjaTerms from comma separated terms asynchronously.
         /// <example>Example: This,is,code</example>
         /// </summary>
-        /// <returns>A Task that yeilds NinjaTerms.</returns>
+        /// <returns>A Task that yields NinjaTerms.</returns>
         /// <param name="terms">An array of terms.</param>
         /// <exception cref="WebException"></exception>
         /// <exception cref="CategoryNotEnumeratedException"></exception>
@@ -171,13 +171,13 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Remove spans and links to avoid unnessearily complex regex patterns.
+        /// Remove spans and links to avoid unnecessarily complex rage patterns.
         /// Also completely remove the spans that define the definition marker.
         /// </summary>
         private static string RemoveUnwantedData(string element)
         {
             var SB = new StringBuilder(element);
-            // Unescape quotations and remove newlines
+            // Un-escape quotations and remove newlines
             SB.Replace(@"\n", string.Empty); // For some reason, literal newlines are in HTML
             SB.Replace(@"\""", @"""");
             // Remove link tags
@@ -232,8 +232,8 @@ namespace NinjaWordsApi
         /// <summary>
         /// Parses an element to a NinjaTerm.
         /// </summary>
-        /// <param name="element">The element that contains one term</param>
-        /// <returns>An undefined term if nothing found</returns>
+        /// <param name="element">The element that contains one term.</param>
+        /// <returns>An undefined term if nothing found.</returns>
         private static NinjaTerm ExtractNinjaWord(string element)
         {
             const RegexOptions OPTIONS = RegexOptions.Singleline;

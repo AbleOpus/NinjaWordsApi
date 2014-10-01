@@ -24,7 +24,7 @@ namespace NinjaWordsApi
         public string Example { get; private set; }
 
         /// <summary>
-        /// Creates a new instance of <see cref="NinjaEntry"/>.
+        /// Initializes a new instance of the <see cref="NinjaEntry"/> class.
         /// </summary>
         /// <param name="category">The category the term falls under.</param>
         /// <param name="definition">The text that defines the word.</param>

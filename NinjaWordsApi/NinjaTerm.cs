@@ -35,7 +35,8 @@ namespace NinjaWordsApi
         #endregion
 
         /// <summary>
-        /// Creates a new defined instance of NinjaTerm.
+        /// Initializes a new instance of the <see cref="NinjaTerm"/> class with the specified
+        /// arguments. This is instance will be defined.
         /// </summary>
         /// <param name="term">The text of this term.</param>
         /// <param name="synonyms">The available synonyms for this term.</param>
@@ -48,7 +49,7 @@ namespace NinjaWordsApi
         }
 
         /// <summary>
-        /// Creates a new instance of NinjaTerm, without providing a definition.
+        /// Initializes a new instance of the <see cref="NinjaTerm"/> class without providing a definition.
         /// </summary>
         /// <remarks>Defined will be false by default.</remarks>
         public NinjaTerm(string term) : this(term, null, null) { }
