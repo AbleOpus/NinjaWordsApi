@@ -1,5 +1,5 @@
+#NinjaWordsApi
 ##Basics
-
 There is no web API for ninjawords.com but certain requests can yield barebones HTML. Making it easy to parse into workable data. This API uses regex patterns to get information from downloaded webpages. The pages download extremely fast (around 150ms). NinjaWords can display multiple term results on one page. Meaning the API can yield results for multiple terms with one request. 
 
 The  data break down is simple and resembles how data is displayed on the site:
