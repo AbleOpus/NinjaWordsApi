@@ -54,6 +54,12 @@ namespace NinjaWordsApi
         /// <remarks>Defined will be false by default.</remarks>
         public NinjaTerm(string term) : this(term, null, null) { }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             if (Entries == null) return string.Empty;   

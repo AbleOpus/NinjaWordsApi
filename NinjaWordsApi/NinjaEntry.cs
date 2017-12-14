@@ -36,6 +36,12 @@ namespace NinjaWordsApi
             Example = example;
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             // I Ex. (noun) To refer to ones self.
