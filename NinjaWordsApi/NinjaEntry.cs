@@ -49,7 +49,7 @@ namespace NinjaWordsApi
             string text = " ° " + Definition;
 
             if (!String.IsNullOrEmpty(Example))
-                text += Environment.NewLine + @"   """ + Example + @"""";
+                text += Environment.NewLine + $@"   ""{Example}""";
 
             return text;
         }
